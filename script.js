@@ -1,96 +1,71 @@
-// Get HTML elements
-const getBtnToggleMenu = document.querySelector(".btn-toggle-menu");
-const getSidebar = document.querySelector(".nav-sidebar");
-const getSidebarUl = document.querySelector(".nav-sidebar ul");
-const getSidebarTitle = document.querySelector(".nav-sidebar span");
-const getSidebarLis = document.querySelectorAll(".nav-sidebar li");
-const getBody = document.querySelector("body")
-const getGreyBackground = document.querySelector(".grey-background")
-const getRedBackground = document.querySelector(".red-background")
-const getGreenBackground = document.querySelector(".green-background")
-const getBlueBackground = document.querySelector(".blue-background")
-const getYellowBackground = document.querySelector(".yellow-background")
-const getMain = document.querySelector("main")
-const getColorButton1 = document.querySelector("#colorButton1")
-const getColorButton2 = document.querySelector("#colorButton2")
-const getColorButton3 = document.querySelector("#colorButton3")
-const getColorButton4 = document.querySelector("#colorButton4")
-const getColorButton5 = document.querySelector("#colorButton5")
+// HTML elements
+const btnToggleMenu = document.querySelector(".btn-toggle-menu");
+const sidebar = document.querySelector(".nav-sidebar");
+const sidebarUl = document.querySelector(".nav-sidebar ul");
+const sidebarTitle = document.querySelector(".nav-sidebar span");
+const sidebarList = document.querySelectorAll(".nav-sidebar li");
+const body = document.querySelector("body")
+const greyBackground = document.querySelector(".grey-background")
+const redBackground = document.querySelector(".red-background")
+const greenBackground = document.querySelector(".green-background")
+const blueBackground = document.querySelector(".blue-background")
+const yellowBackground = document.querySelector(".yellow-background")
+const main = document.querySelector("main")
+const colorButton1 = document.querySelector("#colorButton1")
+const colorButton2 = document.querySelector("#colorButton2")
+const colorButton3 = document.querySelector("#colorButton3")
+const colorButton4 = document.querySelector("#colorButton4")
+const colorButton5 = document.querySelector("#colorButton5")
 
 // Function for opening and closing the menu
 let toggleNavStatus = false;
 let toggleNav = function () {
-
-    if (toggleNavStatus === false) {
-        getSidebarUl.style.visibility = "visible";
-        getSidebar.style.width = "200px";
-        getSidebarTitle.style.opacity = "0.5";
-
-        let arrayLength = getSidebarLis.length;
-        for (let i = 0; i < arrayLength; i++) {
-            getSidebarLis[i].style.opacity = "1";
-        }
-
-        toggleNavStatus = true;
-    }
-
-    else if (toggleNavStatus === true) {
-        getSidebar.style.width = "0";
-        getSidebarTitle.style.opacity = "0";
-
-        let arrayLength = getSidebarLis.length;
-        for (let i = 0; i < arrayLength; i++) {
-            getSidebarLis[i].style.opacity = "0";
-        }
-
-        getSidebarUl.style.visibility = "hidden";
-
-        toggleNavStatus = false;
-    }
+    if (toggleNavStatus === false) closeNav();
+    else openNav();
 }
 
 
 // EventListeners for opening the menu while hovering hamburger-button or nav-sidebar
-getBtnToggleMenu.addEventListener("mouseover", function () { toggleNav() });
-getBtnToggleMenu.addEventListener("mouseout", function () { toggleNav() });
-getSidebar.addEventListener("mouseover", function () { toggleNav() });
-getSidebar.addEventListener("mouseout", function () { toggleNav() });
+btnToggleMenu.addEventListener("mouseover", function () { toggleNav() });
+btnToggleMenu.addEventListener("mouseout", function () { toggleNav() });
+sidebar.addEventListener("mouseover", function () { toggleNav() });
+sidebar.addEventListener("mouseout", function () { toggleNav() });
 
 
 // Set color functions
 const setGrey = function () {
-    getBody.className = "grey-background";
-    getMain.innerHTML = "Home";
-    getColorButton1.checked = true;
+    body.className = "grey-background";
+    main.innerHTML = "Home";
+    colorButton1.checked = true;
 }
 const setRed = function () {
-    getBody.className = "red-background";
-    getMain.innerHTML = "Rood";
-    getColorButton2.checked = true;
+    body.className = "red-background";
+    main.innerHTML = "Rood";
+    colorButton2.checked = true;
 }
 const setGreen = function () {
-    getBody.className = "green-background";
-    getMain.innerHTML = "Groen";
-    getColorButton3.checked = true;
+    body.className = "green-background";
+    main.innerHTML = "Groen";
+    colorButton3.checked = true;
 }
 const setBlue = function () {
-    getBody.className = "blue-background";
-    getMain.innerHTML = "Blauw";
-    getColorButton4.checked = true;
+    body.className = "blue-background";
+    main.innerHTML = "Blauw";
+    colorButton4.checked = true;
 }
 const setYellow = function () {
-    getBody.className = "yellow-background";
-    getMain.innerHTML = "Geel";
-    getColorButton5.checked = true;
+    body.className = "yellow-background";
+    main.innerHTML = "Geel";
+    colorButton5.checked = true;
 }
 
 
 // Set background color by clicking menu items
-getGreyBackground.addEventListener("click", function () { setGrey() })
-getRedBackground.addEventListener("click", function () { setRed() })
-getBlueBackground.addEventListener("click", function () { setBlue() })
-getGreenBackground.addEventListener("click", function () { setGreen() })
-getYellowBackground.addEventListener("click", function () { setYellow() })
+greyBackground.addEventListener("click", function () { setGrey() })
+redBackground.addEventListener("click", function () { setRed() })
+blueBackground.addEventListener("click", function () { setBlue() })
+greenBackground.addEventListener("click", function () { setGreen() })
+yellowBackground.addEventListener("click", function () { setYellow() })
 
 
 // Set background color using the keyboard (keys 1 to 5)
@@ -113,6 +88,30 @@ document.addEventListener('keydown', function (event) {
 });
 
 
+function openNav() {
+    sidebar.style.width = "0";
+    sidebarTitle.style.opacity = "0";
 
+    let arrayLength = sidebarList.length;
+    for (let i = 0; i < arrayLength; i++) {
+        sidebarList[i].style.opacity = "0";
+    }
 
+    sidebarUl.style.visibility = "hidden";
+
+    toggleNavStatus = false;
+}
+
+function closeNav() {
+    sidebarUl.style.visibility = "visible";
+    sidebar.style.width = "200px";
+    sidebarTitle.style.opacity = "0.5";
+
+    let arrayLength = sidebarList.length;
+    for (let i = 0; i < arrayLength; i++) {
+        sidebarList[i].style.opacity = "1";
+    }
+
+    toggleNavStatus = true;
+}
 
